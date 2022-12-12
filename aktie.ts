@@ -1,6 +1,6 @@
 import { Gegenstand } from "./gegenstand";
 
-export class aktie extends Gegenstand{
+export class Aktie extends Gegenstand{
 
   constructor(id: number, wert: number, public unternehmen: string, public nennwert: number){
     super(id,wert);

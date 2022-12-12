@@ -44,14 +44,19 @@ export class Tresor {
       this.gegenstaende.push();
    }
 
-   getGegenstand(id: number): GegenstandNichtGefundenError {
-    
-    const found = this.gegenstaende.find(element => gegenstaende = id);
+   getGegenstand(id: number): void { 
+    let found = this.gegenstaende.find(g => g.id === id);
+    if (found === undefined) {
+      console.log(found);
+    } else {
+      throw GegenstandNichtGefundenError;
+    }
+  }
 
-    return ;
-   } 
-
-
+  removeGegenstand(Gegenstand: Gegenstand): void {
+    let remove = this.gegenstaende.filter(Gegenstand);  
+  }
+   
    berechneGesamtwert(): number {
      let summeWerte: number = 0;
      this.gegenstaende.forEach(g => summeWerte += g.wert);
@@ -60,7 +65,7 @@ export class Tresor {
 
    toString(): string {
      let text: string = "LISTE DER GEGENSTÄNDE";
-     text += this.gegenstaende.forEach();
+     text += this.gegenstaende.forEach(Gegenstand => console.log(Gegenstand));
      return text;
    }
 
