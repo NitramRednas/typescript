@@ -68,7 +68,7 @@ export class Tresor {
 
    toString(): string {
      let text: string = "LISTE DER GEGENSTÄNDE";
-     text += this.gegenstaende.forEach(Gegenstand => console.log(Gegenstand + "\n"));
+     this.gegenstaende.forEach(g => text += "\n" + g.toString());
      return text;
    }
 
