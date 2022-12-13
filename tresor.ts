@@ -40,21 +40,24 @@ export class Tresor {
     * vgl. https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/filter 
     */
 
-   addGegenstand(): void {
-      this.gegenstaende.push();
+   addGegenstand(gegenstand: Gegenstand): void {
+      this.gegenstaende.push(gegenstand);
    }
 
-   getGegenstand(id: number): void { 
-    let found = this.gegenstaende.find(g => g.id === id);
+   getGegenstand(id: number): Gegenstand { 
+    let found: Gegenstand = this.gegenstaende.find(g => g.id === id);
     if (found === undefined) {
-      console.log(found);
-    } else {
-      throw GegenstandNichtGefundenError;
+      throw new GegenstandNichtGefundenError(id);
     }
+      return found;
   }
 
-  removeGegenstand(Gegenstand: Gegenstand): void {
-    let remove = this.gegenstaende.filter(Gegenstand);  
+  removeGegenstand(g: Gegenstand, id : number): void {
+    this.gegenstaende.find(g => g.id !== id);
+    this.gegenstaende = this.gegenstaende.splice(g.id, 1);
+    if (g === undefined) {
+      throw new GegenstandNichtGefundenError(g.id);
+    }
   }
    
    berechneGesamtwert(): number {
@@ -65,7 +68,7 @@ export class Tresor {
 
    toString(): string {
      let text: string = "LISTE DER GEGENSTÄNDE";
-     text += this.gegenstaende.forEach(Gegenstand => console.log(Gegenstand));
+     text += this.gegenstaende.forEach(Gegenstand => console.log(Gegenstand + "\n"));
      return text;
    }
 
